@@ -73,12 +73,12 @@ function SkillIntelligence() {
   const seed = getSeedCompany(selected?.companyId);
   const skills = useMemo(() => normalizeDashboardSkills(seed?.skill_levels), [seed]);
   if (!seed || !selected) return null;
-  const shortName = String(seed.short_json.short_name ?? selected.companyName);
+  const shortName = String(seed.short_json["short_name"] ?? selected.companyName);
 
   return (
     <div className="mx-auto max-w-5xl space-y-6 p-4">
       <div className="flex items-center gap-3 border-b pb-4">
-        <CompanyLogo name={selected.companyName} logoUrl={selected.logoUrl} websiteUrl={String(seed.short_json.website_url ?? "")} />
+        <CompanyLogo name={selected.companyName} logoUrl={selected.logoUrl} websiteUrl={String(seed.short_json["website_url"] ?? "")} />
         <div>
           <h1 className="font-heading text-xl font-semibold sm:text-2xl">{shortName} Skill Intelligence</h1>
           <p className="text-sm text-muted-foreground">{skills.length} skills required, sorted by importance</p>

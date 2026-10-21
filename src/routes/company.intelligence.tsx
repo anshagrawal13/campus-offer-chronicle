@@ -52,7 +52,7 @@ function renderValue(key: string, v?: string) {
     if (items.every((i) => i.length <= 40)) return <div className="flex flex-wrap gap-1.5">{items.map((i) => <Pill key={i}>{i}</Pill>)}</div>;
     return <ul className="list-disc space-y-1 pl-5">{items.map((i) => <li key={i}>{i}</li>)}</ul>;
   }
-  if (v.includes(",") && v.length <= 80 && v.split(",").every((p) => p.trim().length <= 25 && p.trim().split(" ").length <= 3)) {
+  if (v.split(", ").length >= 3 && v.length <= 80 && v.split(",").every((p) => p.trim().length <= 25 && p.trim().split(" ").length <= 3)) {
     return <div className="flex flex-wrap gap-1.5">{v.split(",").map((i) => <Pill key={i}>{i.trim()}</Pill>)}</div>;
   }
   return <span>{v}</span>;
@@ -118,16 +118,16 @@ function CompanyIntelligence() {
     <div>
       <div className="sticky top-0 z-20 border-b bg-card">
         <div className="flex items-center gap-3 px-4 py-3">
-          <CompanyLogo name={profile.name} logoUrl={profile.logo_url} websiteUrl={profile.website_url} className="h-10 w-10" />
+          <CompanyLogo name={profile["name"]} logoUrl={profile["logo_url"]} websiteUrl={profile["website_url"]} className="h-10 w-10" />
           <div className="min-w-0 flex-1">
-            <h1 className="truncate font-heading text-base font-semibold sm:text-lg">{profile.name}</h1>
-            <span className="inline-flex rounded-full bg-[#EFF6FF] px-2 py-0.5 text-xs font-medium text-[#2563EB]">{profile.category}</span>
+            <h1 className="truncate font-heading text-base font-semibold sm:text-lg">{profile["name"]}</h1>
+            <span className="inline-flex rounded-full bg-[#EFF6FF] px-2 py-0.5 text-xs font-medium text-[#2563EB]">{profile["category"]}</span>
           </div>
-          {!isNullish(profile.website_url) && (
-            <Button asChild size="sm" variant="outline"><a href={profile.website_url} target="_blank" rel="noreferrer"><ExternalLink className="h-4 w-4" /><span className="hidden sm:inline">Website</span></a></Button>
+          {!isNullish(profile["website_url"]) && (
+            <Button asChild size="sm" variant="outline"><a href={profile["website_url"]} target="_blank" rel="noreferrer"><ExternalLink className="h-4 w-4" /><span className="hidden sm:inline">Website</span></a></Button>
           )}
-          {!isNullish(profile.linkedin_url) && (
-            <Button asChild size="sm" variant="outline"><a href={profile.linkedin_url} target="_blank" rel="noreferrer"><Linkedin className="h-4 w-4" /><span className="hidden sm:inline">LinkedIn</span></a></Button>
+          {!isNullish(profile["linkedin_url"]) && (
+            <Button asChild size="sm" variant="outline"><a href={profile["linkedin_url"]} target="_blank" rel="noreferrer"><Linkedin className="h-4 w-4" /><span className="hidden sm:inline">LinkedIn</span></a></Button>
           )}
         </div>
         <div className="flex gap-1 overflow-x-auto px-2 pb-2 [scrollbar-width:none]">

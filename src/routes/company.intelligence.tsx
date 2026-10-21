@@ -118,7 +118,7 @@ function CompanyIntelligence() {
     <div>
       <div className="sticky top-0 z-20 border-b bg-card">
         <div className="flex items-center gap-3 px-4 py-3">
-          <CompanyLogo name={profile["name"]} logoUrl={profile["logo_url"]} websiteUrl={profile["website_url"]} className="h-10 w-10" />
+          <CompanyLogo name={profile["name"] ?? ""} logoUrl={profile["logo_url"]} websiteUrl={profile["website_url"]} className="h-10 w-10" />
           <div className="min-w-0 flex-1">
             <h1 className="truncate font-heading text-base font-semibold sm:text-lg">{profile["name"]}</h1>
             <span className="inline-flex rounded-full bg-[#EFF6FF] px-2 py-0.5 text-xs font-medium text-[#2563EB]">{profile["category"]}</span>

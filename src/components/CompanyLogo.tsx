@@ -5,7 +5,7 @@ function domainOf(url?: string) {
   try { return url ? new URL(url).hostname.replace(/^www\./, "") : ""; } catch { return ""; }
 }
 
-export function CompanyLogo({ name, logoUrl, websiteUrl, className }: { name: string; logoUrl?: string; websiteUrl?: string; className?: string }) {
+export function CompanyLogo({ name, logoUrl, websiteUrl, className }: { name: string; logoUrl?: string | undefined; websiteUrl?: string | undefined; className?: string }) {
   const key = import.meta.env["VITE_LOGO_DEV_PUBLISHABLE_KEY"] as string | undefined;
   const domain = domainOf(websiteUrl);
   const sources = [key && domain ? `https://img.logo.dev/${domain}?token=${key}` : "", logoUrl ?? ""].filter(Boolean);

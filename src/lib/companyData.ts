@@ -102,18 +102,18 @@ export function normalizeCompanySummary(shortJson: unknown, companyId = 0): Comp
   const r = asRecord(shortJson);
   return {
     companyId,
-    name: asString(r.name),
-    shortName: asString(r.short_name) || asString(r.name),
-    logoUrl: asString(r.logo_url),
-    category: asString(r.category),
-    companyType: toCompanyType(r.company_type),
-    incorporationYear: asString(r.incorporation_year),
-    employeeSize: asString(r.employee_size),
-    headquarters: asString(r.headquarters_address),
-    operatingCountries: asString(r.operating_countries),
-    officeLocations: asString(r.office_locations),
-    yoyGrowthRate: asString(r.yoy_growth_rate),
-    websiteUrl: asString(r.website_url),
+    name: asString(r["name"]),
+    shortName: asString(r["short_name"]) || asString(r["name"]),
+    logoUrl: asString(r["logo_url"]),
+    category: asString(r["category"]),
+    companyType: toCompanyType(r["company_type"]),
+    incorporationYear: asString(r["incorporation_year"]),
+    employeeSize: asString(r["employee_size"]),
+    headquarters: asString(r["headquarters_address"]),
+    operatingCountries: asString(r["operating_countries"]),
+    officeLocations: asString(r["office_locations"]),
+    yoyGrowthRate: asString(r["yoy_growth_rate"]),
+    websiteUrl: asString(r["website_url"]),
   };
 }
 
@@ -132,14 +132,14 @@ export function normalizeDashboardSkills(skillLevels: unknown): DashboardSkill[]
   return arr
     .map((raw) => {
       const r = asRecord(raw);
-      const id = Number(r.skill_set_id) || 0;
-      const score = Math.max(0, Math.min(10, Number(r.required_level) || 0));
+      const id = Number(r["skill_set_id"]) || 0;
+      const score = Math.max(0, Math.min(10, Number(r["required_level"]) || 0));
       const ladder = SKILL_TOPICS[id] ?? [];
       return {
         id,
-        name: asString(r.skill_set_name),
+        name: asString(r["skill_set_name"]),
         score,
-        proficiency: asString(r.required_proficiency),
+        proficiency: asString(r["required_proficiency"]),
         bloom: proficiencyToBloom(score),
         criticality: scoreToCriticality(score),
         difficulty: scoreToDifficulty(score),

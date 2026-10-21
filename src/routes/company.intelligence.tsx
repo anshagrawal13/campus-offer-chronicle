@@ -25,7 +25,7 @@ const Pill = ({ children, muted }: { children: React.ReactNode; muted?: boolean 
   <span className={`inline-flex rounded-full border px-2.5 py-0.5 text-xs ${muted ? "bg-muted text-muted-foreground italic" : "bg-secondary text-secondary-foreground"}`}>{children}</span>
 );
 
-function renderValue(key: string, v?: string) {
+function renderValue(key: string, v?: string | undefined) {
   if (v === undefined || isNullish(v)) return <Pill muted>Not Available</Pill>;
   if (/^https?:\/\//.test(v)) {
     const video = /youtube|vimeo|video/i.test(v) || key.includes("video");
@@ -58,7 +58,7 @@ function renderValue(key: string, v?: string) {
   return <span>{v}</span>;
 }
 
-const FieldRow = ({ label, k, value }: { label: string; k: string; value?: string }) => (
+const FieldRow = ({ label, k, value }: { label: string; k: string; value?: string | undefined }) => (
   <div className="flex flex-col gap-1 border-b py-3 last:border-0 sm:flex-row sm:gap-4">
     <dt className="text-sm font-medium text-muted-foreground sm:w-1/3">{label}</dt>
     <dd className="text-sm sm:w-2/3">{renderValue(k, value)}</dd>
